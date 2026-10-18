@@ -1,0 +1,35 @@
+# Зависимости
+node_modules/
+
+# Сборка
+dist/
+build/
+
+# Секреты — никогда в git
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+keystore.properties
+
+# База данных и загрузки
+*.db
+*.db-shm
+*.db-wal
+server/uploads/
+
+# Исходники книги (PDF) — только локально
+*.pdf
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+
+# Система и редакторы
+.DS_Store
+.idea/
+.vscode/
+*.log
