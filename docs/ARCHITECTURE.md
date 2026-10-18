@@ -65,3 +65,29 @@
 - Одна версия Vite (8) на весь монорепо: разные версии в разных пакетах ломают плагин React.
 - `react-router` 7 вместо 6 — в 6-й найдена уязвимость. Правило: после `npm install` смотреть на `found 0 vulnerabilities`.
 - Раскладка и размеры — как в «Я стоик» (меню 64px, отступы 24/16/80), палитра своя.
+
+### Этап 2 — админ-кабинет: вход и редактор (v0.2.0)
+
+```
+ admin  ── POST /api/admin/login {password} ──► server: verifyPassword(scrypt-хеш из .env)
+        ◄────────────── { token } (JWT, 30 дней) ─┘     5 ошибок за 15 мин → 429
+ admin  ── POST /api/upload + Bearer <token> ──► requireAdmin ─► multer ─► server/uploads/<имя>.png
+ user/admin ── GET /uploads/<имя>.png ─────────► express.static(server/uploads)
+```
+
+| Где | Файл | Роль |
+|---|---|---|
+| server | `src/config.ts` | читает `.env`; без `JWT_SECRET`/`ADMIN_PASSWORD_HASH` сервер не стартует |
+| server | `src/auth/password.ts` | `hashPassword` / `verifyPassword` (scrypt, сравнение за постоянное время) |
+| server | `src/auth/requireAdmin.ts` | `signAdminToken`, охранник `requireAdmin` — ставить на **каждый** изменяющий маршрут |
+| server | `src/routes/admin.ts`, `src/routes/upload.ts` | вход, `/me`, загрузка картинок (JPG/PNG/WebP/GIF, без SVG) |
+| server | `src/scripts/admin-password.ts` | `npm run admin:password -w @datsan/server` → строки для `.env` |
+| admin | `src/lib/api.ts` | все запросы: токен в заголовке, 401 → выход |
+| admin | `src/context/AuthContext.tsx`, `pages/Login.tsx` | состояние входа, экран пароля |
+| admin | `components/HtmlEditor.tsx`, `ImageUploadModal.tsx` | редактор с предпросмотром — общий для всех разделов |
+
+Решения этапа:
+- Один администратор, без логина — только пароль; пароль в `.env` хранится хешем.
+- `createApp(db, config)` получает настройки параметром — в тестах свои пароль, секрет и временная папка загрузок.
+- Классы оформления текста: `.mantra` (мантра), `.accent` (выделенный блок), `blockquote` (цитата) —
+  их же будет понимать приложение при показе глав, хуралов и божеств.

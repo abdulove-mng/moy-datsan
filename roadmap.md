@@ -77,12 +77,14 @@ git switch main && git pull          ← обновить локальный mai
 **Цель:** администратор входит по паролю, остальные — нет.
 
 Задачи:
-- [ ] `server/.env.example` (что нужно заполнить) и `server/.env` (настоящие значения, не в git).
-- [ ] `POST /api/admin/login`: сверка с хешем `ADMIN_PASSWORD_HASH`, выдача JWT (секрет только из `.env`).
-- [ ] Middleware `requireAdmin` на всех POST/PUT/DELETE.
-- [ ] Админка: экран входа, боковое меню (Главы, Тесты, Практики, Хуралы, Божества, Зурхай).
-- [ ] Перенос редактора `HtmlTextareaEditor` и `ImageUploadModal` из «Я стоик», `POST /api/upload`.
-- [ ] Тест: запрос без токена → 401.
+- [x] `server/.env.example` и `npm run admin:password -w @datsan/server` для `server/.env` (не в git) — #16.
+- [x] `POST /api/admin/login`: сверка с хешем `ADMIN_PASSWORD_HASH`, выдача JWT (секрет только из `.env`), защита от перебора — #16.
+- [x] `requireAdmin` — охранник изменяющих маршрутов (сейчас: `/api/admin/me`, `/api/upload`) — #16.
+- [x] Админка: экран входа, выход, боковое меню (Главы, Тесты, Практики, Хуралы, Божества, Зурхай) — #17.
+- [x] Редактор `HtmlEditor` с предпросмотром и `ImageUploadModal`, `POST /api/upload` — #18.
+- [x] Тесты: без токена → 401 (12 тестов сервера).
+
+✅ v0.2.0
 
 ## Этап 3. Философия (книга) — `v0.3.0`
 
