@@ -7,12 +7,14 @@
   "workspaces": [
     "shared",
     "server",
-    "user"
+    "user",
+    "admin"
   ],
   "scripts": {
     "dev": "concurrently -c yellow,cyan,magenta \"npm:dev:*\"",
     "dev:server": "npm run dev -w @datsan/server",
     "dev:user": "npm run dev -w @datsan/user",
+    "dev:admin": "npm run dev -w @datsan/admin",
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present"
