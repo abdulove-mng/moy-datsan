@@ -3,6 +3,7 @@ import type Database from 'better-sqlite3'
 import type { HealthResponse } from '@datsan/shared'
 import type { Config } from './config.js'
 import { adminRouter } from './routes/admin.js'
+import { uploadRouter } from './routes/upload.js'
 
 /**
  * Собирает Express-приложение со всеми маршрутами, но не запускает его.
@@ -20,6 +21,10 @@ export function createApp(db: Database.Database, config: Config) {
   })
 
   app.use('/api/admin', adminRouter(config))
+  app.use('/api/upload', uploadRouter(config))
+
+  // Загруженные картинки раздаются как обычные файлы: /uploads/<имя>.
+  app.use('/uploads', express.static(config.uploadDir, { maxAge: '30d', immutable: true }))
 
   return app
 }

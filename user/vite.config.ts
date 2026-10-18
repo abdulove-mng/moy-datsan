@@ -9,6 +9,7 @@ export default defineConfig({
     // Для приложения это выглядит как один сайт — не нужно настраивать CORS.
     proxy: {
       '/api': 'http://localhost:3001',
+      '/uploads': 'http://localhost:3001',
     },
   },
 })

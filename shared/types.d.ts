@@ -19,6 +19,12 @@ export interface AdminLoginRequest {
   password: string;
 }
 
+/** POST /api/upload — загрузка картинки (только администратор). */
+export interface UploadResponse {
+  /** Адрес для <img src="…">, например /uploads/1729-ab12cd34.png */
+  url: string;
+}
+
 export interface AdminLoginResponse {
   /** Токен для заголовка `Authorization: Bearer <token>`, действует 30 дней. */
   token: string;

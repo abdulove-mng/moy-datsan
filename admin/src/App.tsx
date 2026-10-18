@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router'
 import Sidebar from './components/Sidebar'
 import { useAuth } from './context/AuthContext'
 import Login from './pages/Login'
+import EditorSandbox from './pages/EditorSandbox'
 import Overview from './pages/Overview'
 import SectionPage from './pages/SectionPage'
 import { sections } from './sections'
@@ -22,6 +23,7 @@ export default function App() {
           {sections.map((section) => (
             <Route key={section.path} path={section.path} element={<SectionPage section={section} />} />
           ))}
+          <Route path="/editor" element={<EditorSandbox />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

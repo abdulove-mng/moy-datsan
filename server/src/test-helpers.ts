@@ -1,3 +1,6 @@
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
 import { hashPassword } from './auth/password.js'
 import type { Config } from './config.js'
 import { createApp } from './app.js'
@@ -11,9 +14,10 @@ export function testConfig(): Config {
     port: 0,
     jwtSecret: 'test-secret-test-secret-test-secret-123',
     adminPasswordHash: hashPassword(TEST_PASSWORD),
+    uploadDir: fs.mkdtempSync(path.join(os.tmpdir(), 'datsan-uploads-')),
   }
 }
 
-export function testApp() {
-  return createApp(openDb(':memory:'), testConfig())
+export function testApp(config: Config = testConfig()) {
+  return createApp(openDb(':memory:'), config)
 }
