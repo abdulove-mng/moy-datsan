@@ -272,3 +272,122 @@ html, body {
   font-size: 14px;
   color: var(--admin-text-secondary);
 }
+
+/* ---- Выход ---- */
+
+.sidebar__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sidebar__logout {
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--admin-sidebar-text);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.sidebar__logout:hover {
+  color: var(--admin-sidebar-active);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* ---- Экран входа ---- */
+
+.splash {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 40px;
+  color: var(--admin-accent);
+}
+
+.login-page {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 32px 28px;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+}
+
+.login-card__logo {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+  font-size: 30px;
+  color: var(--admin-accent);
+  background: var(--admin-maroon);
+  border-radius: 15px;
+}
+
+.login-card__title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.login-card__subtitle {
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: var(--admin-text-secondary);
+}
+
+.login-card__error {
+  align-self: stretch;
+  font-size: 13px;
+  color: var(--admin-down);
+}
+
+.login-card__footer {
+  margin-top: 14px;
+}
+
+.field {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.field__label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field__input {
+  padding: 10px 12px;
+  border: 1px solid var(--admin-border);
+  border-radius: 9px;
+  font: inherit;
+  font-size: 15px;
+  background: #fff;
+}
+
+.field__input:focus {
+  outline: 2px solid var(--admin-accent);
+  outline-offset: -1px;
+}
+
+.btn--wide {
+  align-self: stretch;
+}

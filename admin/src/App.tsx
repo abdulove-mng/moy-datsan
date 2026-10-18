@@ -1,11 +1,18 @@
 import { Navigate, Route, Routes } from 'react-router'
 import Sidebar from './components/Sidebar'
+import { useAuth } from './context/AuthContext'
+import Login from './pages/Login'
 import Overview from './pages/Overview'
 import SectionPage from './pages/SectionPage'
 import { sections } from './sections'
 
-// Раскладка админки: меню слева, рабочая область справа.
+// Без входа — только экран пароля. После входа — меню слева, рабочая область справа.
 export default function App() {
+  const { status } = useAuth()
+
+  if (status === 'checking') return <div className="splash">☸</div>
+  if (status === 'signed-out') return <Login />
+
   return (
     <div className="admin-layout">
       <Sidebar />

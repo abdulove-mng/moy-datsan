@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router'
 import { sections } from '../sections'
 import ServerStatus from './ServerStatus'
+import { useAuth } from '../context/AuthContext'
 
 // Боковое меню админки — как в «Я стоик»: логотип, разделы, внизу статус сервера.
 export default function Sidebar() {
+  const { logout } = useAuth()
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `sidebar__link${isActive ? ' sidebar__link--active' : ''}`
 
@@ -32,6 +34,9 @@ export default function Sidebar() {
 
       <div className="sidebar__footer">
         <ServerStatus />
+        <button className="sidebar__logout" onClick={logout}>
+          Выйти
+        </button>
       </div>
     </aside>
   )
