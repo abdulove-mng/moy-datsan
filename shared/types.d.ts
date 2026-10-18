@@ -8,3 +8,18 @@
 export interface HealthResponse {
   status: 'ok';
 }
+
+/** Ошибка API: { error: "текст для человека" }. */
+export interface ApiError {
+  error: string;
+}
+
+/** POST /api/admin/login — вход администратора. */
+export interface AdminLoginRequest {
+  password: string;
+}
+
+export interface AdminLoginResponse {
+  /** Токен для заголовка `Authorization: Bearer <token>`, действует 30 дней. */
+  token: string;
+}
