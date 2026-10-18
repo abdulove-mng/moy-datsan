@@ -30,6 +30,11 @@ export default function Sidebar() {
             <span>{section.title}</span>
           </NavLink>
         ))}
+        <div className="sidebar__divider">Инструменты</div>
+        <NavLink to="/editor" className={linkClass}>
+          <span className="sidebar__icon">🧪</span>
+          <span>Редактор текста</span>
+        </NavLink>
       </nav>
 
       <div className="sidebar__footer">
