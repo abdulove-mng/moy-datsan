@@ -54,7 +54,7 @@ git switch main && git pull          ← обновить локальный mai
 - [x] Первая ветка `docs/git-guide-stage0` → PR #1 → merge.
 - [x] Создать Milestones для этапов 0–9, метки, Issues для этапа 1 и доску Projects.
 - [x] Защитить ветку `main` (только через PR, только squash).
-- [ ] Итоги этапа 0 в документах — задача #2.
+- [x] Итоги этапа 0 в документах — задача #2.
 
 Готово, когда: на github.com виден репозиторий с документами, PR #1 влит, есть вехи и задачи.
 
@@ -63,14 +63,14 @@ git switch main && git pull          ← обновить локальный mai
 **Цель:** проект запускается одной командой, видны 5 вкладок-заглушек.
 
 Задачи:
-- [ ] Корневой `package.json` с npm workspaces (`server`, `user`, `admin`, `shared`) и скриптами `dev`, `build`, `test`.
-- [ ] `server/`: Express + TypeScript, `GET /api/health`, SQLite (better-sqlite3) с файлом `server/data/datsan.db`.
-- [ ] `user/`: React + Vite, нижняя навигация на 5 вкладок (Практика · Хуралы · Философия · Зурхай · Божества), тёмная тема, палитра.
-- [ ] `admin/`: React + Vite, пустой экран.
-- [ ] Прокси Vite `/api` → `localhost:3001`; `.claude/launch.json` для встроенного браузера.
-- [ ] Сверка вёрстки с «Я стоик» во встроенном браузере (мобильный экран).
+- [x] Корневой `package.json` с npm workspaces (`server`, `user`, `admin`, `shared`) и скриптами `dev`, `build`, `test` — #3.
+- [x] `server/`: Express + TypeScript, `GET /api/health`, SQLite (better-sqlite3) с файлом `server/data/datsan.db` — #4.
+- [x] `user/`: React + Vite, нижняя навигация на 5 вкладок (Практика · Хуралы · Философия · Зурхай · Божества), тёмная тема, палитра — #5.
+- [x] `admin/`: React + Vite, меню разделов слева и рабочая область справа — #6.
+- [x] Прокси Vite `/api` → `localhost:3001`; `.claude/launch.json` для встроенного браузера — #7.
+- [x] Сверка вёрстки с «Я стоик» во встроенном браузере (мобильный экран) — #7.
 
-Готово, когда: `npm run dev` открывает приложение, вкладки переключаются, `/api/health` отвечает `ok`.
+Готово, когда: `npm run dev` открывает приложение, вкладки переключаются, `/api/health` отвечает `ok`. ✅ v0.1.0
 
 ## Этап 2. Админ-кабинет: каркас — `v0.2.0`
 
