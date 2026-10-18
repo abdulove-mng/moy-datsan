@@ -48,12 +48,13 @@ git switch main && git pull          ← обновить локальный mai
 **Цель:** проект живёт на GitHub с первого дня, есть документы, по которым дальше работаем.
 
 Задачи:
-- [ ] Установить GitHub CLI (`gh`), войти в аккаунт, загрузить SSH-ключ, проверить `ssh -T git@github.com`.
-- [ ] Создать приватный репозиторий `moy-datsan` на GitHub.
-- [ ] `git init` в папке проекта, связать с GitHub (`git remote add origin`), первый коммит в `main` (README + .gitignore).
-- [ ] Первая ветка `docs/project-documents`: PRD.md, roadmap.md, CLAUDE.md, docs/ARCHITECTURE.md, docs/GIT_GUIDE.md → PR → merge.
-- [ ] Создать Milestones для этапов 1–9 и Issues для задач этапа 1.
-- [ ] Защитить ветку `main` (только через PR).
+- [x] Установить GitHub CLI (`gh`), войти в аккаунт. Git работает с GitHub по HTTPS через `gh` (SSH-ключ защищён фразой).
+- [x] Создать репозиторий `moy-datsan` на GitHub (сделан публичным ради защиты `main`).
+- [x] `git init` в папке проекта, связать с GitHub (`git remote add origin`), первый коммит в `main` — ушли все документы сразу.
+- [x] Первая ветка `docs/git-guide-stage0` → PR #1 → merge.
+- [x] Создать Milestones для этапов 0–9, метки, Issues для этапа 1 и доску Projects.
+- [x] Защитить ветку `main` (только через PR, только squash).
+- [ ] Итоги этапа 0 в документах — задача #2.
 
 Готово, когда: на github.com виден репозиторий с документами, PR #1 влит, есть вехи и задачи.
 
