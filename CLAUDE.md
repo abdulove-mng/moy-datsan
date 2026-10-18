@@ -53,7 +53,7 @@ Git ходит на GitHub по HTTPS через `gh` (`gh auth setup-git`). Д�
 
 - Требования: [PRD.md](PRD.md). Этапы: [roadmap.md](roadmap.md). Архитектура: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 - **Нет регистрации, входа и профиля** для пользователей. Личные данные — только localStorage на устройстве.
-- 4 вкладки: Философия (Книга | Практика) · Хуралы · Зурхай · Божества.
+- 5 вкладок: Практика · Хуралы · **Философия** (по центру, книга) · Зурхай · Божества.
 - Стек: Node + Express + TypeScript + SQLite (better-sqlite3); React 18 + Vite; чистый CSS (BEM); npm workspaces.
 - Тексты о хуралах и божествах сохраняются с `published=0` и статусом «на проверке», пока владелец их не проверит.
 
