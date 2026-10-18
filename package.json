@@ -1,0 +1,23 @@
+{
+  "name": "moy-datsan",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Мой дацан — хуралы, зурхай, божества и буддийская философия",
+  "type": "module",
+  "workspaces": [
+    "shared"
+  ],
+  "scripts": {
+    "dev": "concurrently -c yellow,cyan,magenta \"npm:dev:*\"",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.5",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
