@@ -19,7 +19,9 @@
 
 ## Процесс: всё через GitHub
 
-Репозиторий: GitHub `moy-datsan` (приватный). Ветка `main` защищена — изменения только через Pull Request.
+Репозиторий: https://github.com/abdulove-mng/moy-datsan (публичный). Ветка `main` защищена на GitHub —
+изменения только через Pull Request, только squash merge, ветка удаляется после merge.
+Git ходит на GitHub по HTTPS через `gh` (`gh auth setup-git`). Доска задач: https://github.com/users/abdulove-mng/projects/1
 
 Для каждой задачи:
 
