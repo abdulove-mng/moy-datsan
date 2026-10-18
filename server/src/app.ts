@@ -1,12 +1,14 @@
 import express from 'express'
 import type Database from 'better-sqlite3'
 import type { HealthResponse } from '@datsan/shared'
+import type { Config } from './config.js'
+import { adminRouter } from './routes/admin.js'
 
 /**
  * Собирает Express-приложение со всеми маршрутами, но не запускает его.
- * Так его можно проверить в тестах без настоящего порта (см. app.test.ts).
+ * Так его можно проверить в тестах без настоящего порта (см. *.test.ts).
  */
-export function createApp(db: Database.Database) {
+export function createApp(db: Database.Database, config: Config) {
   const app = express()
   app.use(express.json())
 
@@ -16,6 +18,8 @@ export function createApp(db: Database.Database) {
     const body: HealthResponse = { status: 'ok' }
     res.json(body)
   })
+
+  app.use('/api/admin', adminRouter(config))
 
   return app
 }
