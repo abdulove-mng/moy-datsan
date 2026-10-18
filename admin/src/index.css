@@ -1,17 +1,24 @@
 /* ============================================
    Мой дацан — админ-кабинет (светлая тема, как в «Я стоик»)
+   Слева тёмное меню, справа рабочая область.
    ============================================ */
 
 :root {
   --admin-bg: #f6f3ef;
   --admin-surface: #ffffff;
+  --admin-surface-hover: #faf6f1;
   --admin-border: #e6dfd6;
   --admin-text: #1f1a17;
   --admin-text-secondary: #75695e;
   --admin-accent: #b8862b;
   --admin-maroon: #7a1f2b;
-  --admin-ok: #2f7d4f;
-  --admin-down: #b23a3a;
+  --admin-sidebar-bg: #1c1512;
+  --admin-sidebar-text: #b3a596;
+  --admin-sidebar-active: #ffffff;
+  --admin-ok: #3fa868;
+  --admin-down: #d0524f;
+
+  --sidebar-width: 248px;
 }
 
 * {
@@ -28,100 +35,240 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-.admin-home {
-  max-width: 560px;
-  margin: 0 auto;
-  padding: 48px 16px;
+#root {
+  height: 100%;
 }
 
-.admin-home__header {
+/* ---- Раскладка ---- */
+
+.admin-layout {
+  display: flex;
+  height: 100%;
+}
+
+.admin-content {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 32px 40px;
+  margin-left: var(--sidebar-width);
+}
+
+/* ---- Меню слева ---- */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--admin-sidebar-bg);
+  color: var(--admin-sidebar-text);
+}
+
+.sidebar__header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 24px;
+  gap: 12px;
+  padding: 22px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.admin-home__logo {
-  width: 52px;
-  height: 52px;
+.sidebar__logo {
+  width: 40px;
+  height: 40px;
   display: grid;
   place-items: center;
-  font-size: 28px;
+  font-size: 22px;
   color: var(--admin-accent);
   background: var(--admin-maroon);
-  border-radius: 14px;
+  border-radius: 11px;
 }
 
-.admin-home__title {
-  font-size: 26px;
+.sidebar__title {
+  font-size: 16px;
   font-weight: 700;
+  color: var(--admin-sidebar-active);
 }
 
-.admin-home__subtitle {
+.sidebar__subtitle {
+  font-size: 12px;
+}
+
+.sidebar__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 10px;
+  overflow-y: auto;
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 9px;
   font-size: 14px;
-  color: var(--admin-text-secondary);
+  font-weight: 500;
+  color: var(--admin-sidebar-text);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar__link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--admin-sidebar-active);
+}
+
+.sidebar__link--active {
+  background: var(--admin-maroon);
+  color: var(--admin-sidebar-active);
+}
+
+.sidebar__icon {
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar__footer {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .server-status {
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 32px;
-  border-radius: 999px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  background: var(--admin-surface);
-  border: 1px solid var(--admin-border);
-  color: var(--admin-text-secondary);
 }
 
 .server-status--ok {
   color: var(--admin-ok);
-  border-color: var(--admin-ok);
 }
 
 .server-status--down {
   color: var(--admin-down);
-  border-color: var(--admin-down);
 }
 
-.admin-home__section {
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
+/* ---- Заголовок страницы ---- */
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.page-header__title {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.page-header__subtitle {
+  margin-top: 4px;
+  max-width: 640px;
+  font-size: 14px;
+  line-height: 1.45;
   color: var(--admin-text-secondary);
-  margin-bottom: 10px;
 }
 
-.upcoming {
-  list-style: none;
+/* ---- Кнопки ---- */
+
+.btn {
+  flex-shrink: 0;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--admin-maroon);
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---- Обзор: карточки разделов ---- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
   background: var(--admin-surface);
   border: 1px solid var(--admin-border);
   border-radius: 12px;
-  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
 }
 
-.upcoming__item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
+.card:hover {
+  border-color: var(--admin-accent);
+  background: var(--admin-surface-hover);
 }
 
-.upcoming__item + .upcoming__item {
-  border-top: 1px solid var(--admin-border);
+.card__icon {
+  font-size: 24px;
 }
 
-.upcoming__icon {
-  font-size: 20px;
+.card__title {
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.upcoming__title {
-  flex: 1;
-  font-size: 15px;
+.card__text {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--admin-text-secondary);
 }
 
-.upcoming__stage {
+.card__stage {
+  margin-top: auto;
   font-size: 12px;
+  color: var(--admin-accent);
+}
+
+/* ---- Пустой раздел ---- */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 64px 24px;
+  text-align: center;
+  background: var(--admin-surface);
+  border: 1px dashed var(--admin-border);
+  border-radius: 12px;
+}
+
+.empty-state__icon {
+  font-size: 40px;
+}
+
+.empty-state__title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.empty-state__text {
+  font-size: 14px;
   color: var(--admin-text-secondary);
 }
