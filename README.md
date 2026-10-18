@@ -14,7 +14,7 @@
 
 ```
 npm install        # один раз: ставит зависимости всех частей проекта
-npm run dev        # запускает всё, что есть (сервер, приложение, админку)
+npm run dev        # запускает всё сразу: сервер, приложение и админку
 npm run typecheck  # проверка типов TypeScript во всех частях
 npm run build      # сборка
 npm test           # тесты
@@ -23,12 +23,22 @@ npm test           # тесты
 ### Как устроены команды
 
 Проект — **монорепо на npm workspaces**: в одном репозитории несколько пакетов
-(`shared/`, позже `server/`, `user/`, `admin/`), у каждого свой `package.json`.
+(`shared/`, `server/`, `user/`, `admin/`), у каждого свой `package.json`.
 Корневой `package.json` перечисляет их в `"workspaces"` и запускает их скрипты разом:
 
 - `npm run build` = `build` в каждом пакете, где он есть (`--workspaces --if-present`);
 - `npm run dev` = все скрипты `dev:*` из корня одновременно (через `concurrently`):
-  `dev:server`, `dev:user`, `dev:admin` добавляются в задачах #4–#6.
+  `dev:server`, `dev:user`, `dev:admin`. Строки в терминале подписаны `[server]`, `[user]`, `[admin]`.
+
+После `npm run dev` открыть:
+
+| Что | Адрес |
+|---|---|
+| Приложение | http://localhost:5173 |
+| Админ-кабинет | http://localhost:5174 |
+| Проверка сервера | http://localhost:3001/api/health |
+
+Остановить — **Ctrl+C** в терминале.
 
 `package-lock.json` фиксирует точные версии всех зависимостей — он хранится в git,
 чтобы на любом компьютере установилось ровно то же самое.
