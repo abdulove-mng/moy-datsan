@@ -5,10 +5,12 @@
   "description": "Мой дацан — хуралы, зурхай, божества и буддийская философия",
   "type": "module",
   "workspaces": [
-    "shared"
+    "shared",
+    "server"
   ],
   "scripts": {
     "dev": "concurrently -c yellow,cyan,magenta \"npm:dev:*\"",
+    "dev:server": "npm run dev -w @datsan/server",
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present"
